@@ -1,0 +1,22 @@
+Server:
+  port: "9001"
+  # release / debug / test
+  mode: "debug"
+  enablePprof: true # 开发环境下开启，生产环境下关闭
+
+MySQL:
+  host: 123.207.190.53
+  port: 3306
+  user: root
+  pass: 123456
+  dbName: watchalert
+  timeout: 10s
+
+Redis:
+  host: 123.207.190.53
+  port: 6379
+  pass: "123456"
+
+Jwt:
+  # 失效时间
+  expire: 18000

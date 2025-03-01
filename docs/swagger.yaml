@@ -1,0 +1,1560 @@
+definitions:
+  models.AlertCurEvent:
+    properties:
+      alarmAggregation:
+        type: boolean
+      annotations:
+        type: string
+      datasource_id:
+        type: string
+      datasource_type:
+        type: string
+      duty_user:
+        type: string
+      effectiveTime:
+        $ref: '#/definitions/models.EffectiveTime'
+      eval_interval:
+        type: integer
+      fingerprint:
+        type: string
+      first_trigger_time:
+        description: 第一次触发时间
+        type: integer
+      first_trigger_time_format:
+        type: string
+      for_duration:
+        type: integer
+      is_recovered:
+        type: boolean
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      last_eval_time:
+        description: 上一次评估时间
+        type: integer
+      last_send_time:
+        description: 上一次发送时间
+        type: integer
+      metric:
+        additionalProperties: true
+        type: object
+      notice_id:
+        description: 默认通知对象ID
+        type: string
+      noticeGroup:
+        items:
+          additionalProperties:
+            type: string
+          type: object
+        type: array
+      recover_time:
+        description: 恢复时间
+        type: integer
+      recover_time_format:
+        type: string
+      recoverNotify:
+        type: boolean
+      repeat_notice_interval:
+        description: 重复通知间隔时间
+        type: integer
+      response_time:
+        type: string
+      rule_id:
+        type: string
+      rule_name:
+        type: string
+      severity:
+        type: string
+      tenantId:
+        type: string
+      time_remaining:
+        type: integer
+    type: object
+  models.AlertHisEvent:
+    properties:
+      annotations:
+        type: string
+      datasource_id:
+        type: string
+      datasource_type:
+        type: string
+      eval_interval:
+        type: integer
+      fingerprint:
+        type: string
+      first_trigger_time:
+        description: 第一次触发时间
+        type: integer
+      is_recovered:
+        type: boolean
+      last_eval_time:
+        description: 最近评估时间
+        type: integer
+      last_send_time:
+        description: 最近发送时间
+        type: integer
+      metric:
+        additionalProperties: true
+        type: object
+      recover_time:
+        description: 恢复时间
+        type: integer
+      rule_id:
+        type: string
+      rule_name:
+        type: string
+      severity:
+        type: string
+      tenantId:
+        type: string
+    type: object
+  models.ChangePassRequest:
+    properties:
+      new_password:
+        description: 新密码
+        example: "654321"
+        type: string
+      user_id:
+        description: 用户ID
+        example: "12345"
+        type: string
+    required:
+    - new_password
+    - user_id
+    type: object
+  models.Dashboard:
+    properties:
+      description:
+        type: string
+      folderId:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      tenantId:
+        type: string
+      url:
+        type: string
+    type: object
+  models.DashboardCreateRequest:
+    properties:
+      config:
+        description: 仪表盘配置
+        example: '{...}'
+        type: string
+      description:
+        description: 描述信息
+        example: 用于监控CPU使用率
+        type: string
+      folder_id:
+        description: 文件夹ID
+        example: folder1
+        type: string
+      title:
+        description: 仪表盘标题
+        example: CPU监控
+        type: string
+    required:
+    - config
+    - folder_id
+    - title
+    type: object
+  models.DashboardFolders:
+    properties:
+      grafanaDashboardUid:
+        type: string
+      grafanaFolderId:
+        type: integer
+      grafanaHost:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      tenantId:
+        type: string
+      theme:
+        type: string
+    type: object
+  models.DashboardQueryRequest:
+    properties:
+      dashboard_id:
+        description: 仪表盘ID
+        example: dash1
+        type: string
+      folder_id:
+        description: 文件夹ID
+        example: folder1
+        type: string
+      tenant_id:
+        description: 租户ID
+        example: tenant1
+        type: string
+      title:
+        description: 标题
+        example: CPU
+        type: string
+    type: object
+  models.DashboardUpdateRequest:
+    properties:
+      config:
+        description: 仪表盘配置
+        example: '{...}'
+        type: string
+      dashboard_id:
+        description: 仪表盘ID
+        example: dash1
+        type: string
+      description:
+        description: 描述信息
+        example: 监控内存使用情况
+        type: string
+      title:
+        description: 仪表盘标题
+        example: 内存监控
+        type: string
+    required:
+    - dashboard_id
+    type: object
+  models.EffectiveTime:
+    properties:
+      endTime:
+        type: integer
+      startTime:
+        type: integer
+      week:
+        items:
+          type: string
+        type: array
+    type: object
+  models.FolderQuery:
+    properties:
+      folder_id:
+        description: 文件夹ID
+        example: folder1
+        type: string
+      tenant_id:
+        description: 租户ID
+        example: tenant1
+        type: string
+      title:
+        description: 标题
+        example: 系统监控
+        type: string
+    type: object
+  models.FolderUpdateRequest:
+    properties:
+      description:
+        description: 描述信息
+        example: 应用监控相关仪表盘
+        type: string
+      folder_id:
+        description: 文件夹ID
+        example: folder1
+        type: string
+      title:
+        description: 文件夹标题
+        example: 应用监控
+        type: string
+    required:
+    - folder_id
+    type: object
+  models.LoginRequest:
+    properties:
+      password:
+        description: 密码
+        example: "123456"
+        type: string
+      username:
+        description: 用户名
+        example: admin
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.RegisterRequest:
+    properties:
+      create_by:
+        description: 创建人
+        example: system
+        type: string
+      email:
+        description: 邮箱
+        example: user@example.com
+        type: string
+      password:
+        description: 密码
+        example: "123456"
+        type: string
+      phone:
+        description: 手机号
+        example: "13800138000"
+        type: string
+      username:
+        description: 用户名
+        example: newuser
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.ReqUserRole:
+    properties:
+      create_at:
+        description: 创建时间
+        example: 1646064000
+        type: integer
+      create_by:
+        description: 创建人
+        example: system
+        type: string
+      description:
+        description: 角色描述
+        example: 管理员角色
+        type: string
+      permissions:
+        description: 权限列表
+        example:
+        - '[''read'''
+        - '''write'']'
+        items:
+          type: string
+        type: array
+      role_id:
+        description: 角色ID
+        example: role_123
+        type: string
+      role_name:
+        description: 角色名称
+        example: admin
+        type: string
+    required:
+    - role_name
+    type: object
+  models.ReqUserRoleQuery:
+    properties:
+      query:
+        description: 模糊查询关键字
+        example: 管理员
+        type: string
+      role_id:
+        description: 角色ID
+        example: role_123
+        type: string
+      role_name:
+        description: 角色名称
+        example: admin
+        type: string
+    type: object
+  models.UpdateRequest:
+    properties:
+      email:
+        description: 邮箱
+        example: new@example.com
+        type: string
+      phone:
+        description: 手机号
+        example: "13800138000"
+        type: string
+      user_id:
+        description: 用户ID
+        example: "12345"
+        type: string
+      username:
+        description: 用户名
+        example: newname
+        type: string
+    required:
+    - user_id
+    type: object
+  models.UserPermissions:
+    properties:
+      api:
+        type: string
+      key:
+        type: string
+    type: object
+  models.UserRole:
+    properties:
+      create_at:
+        type: integer
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      permissions:
+        items:
+          $ref: '#/definitions/models.UserPermissions'
+        type: array
+    type: object
+  response.ResponseData:
+    properties:
+      code:
+        description: 响应码
+        type: integer
+      data:
+        description: 响应数据
+      msg:
+        description: 响应消息
+        type: string
+    type: object
+  routers.ApplicationInfo:
+    properties:
+      cpu_percent:
+        description: CPU 使用百分比
+        type: number
+      environment:
+        description: 运行环境
+        type: string
+      gc_cpu_fraction:
+        description: GC CPU 使用比例
+        type: number
+      last_gc:
+        description: 最后一次 GC 时间
+        type: string
+      memory_used:
+        description: 应用使用的内存
+        type: integer
+      next_gc:
+        description: 下次 GC 阈值
+        type: integer
+      num_fd:
+        description: 文件描述符数量
+        type: integer
+      pid:
+        description: 进程ID
+        type: integer
+      start_time:
+        description: 启动时间
+        type: string
+      version:
+        description: 应用版本
+        type: string
+    type: object
+  routers.HealthStatus:
+    properties:
+      application:
+        allOf:
+        - $ref: '#/definitions/routers.ApplicationInfo'
+        description: 应用信息
+      dependencies:
+        additionalProperties:
+          type: string
+        description: 依赖服务状态
+        type: object
+      resources:
+        allOf:
+        - $ref: '#/definitions/routers.ResourceUsage'
+        description: 资源使用情况
+      status:
+        description: 服务状态：UP/DOWN/WARN
+        type: string
+      system:
+        allOf:
+        - $ref: '#/definitions/routers.SystemInfo'
+        description: 系统信息
+      time:
+        description: 当前时间
+        type: string
+    type: object
+  routers.ResourceUsage:
+    properties:
+      cpu_load:
+        description: CPU 负载（1,5,15分钟）
+        items:
+          type: number
+        type: array
+      cpu_usage:
+        description: CPU 使用率
+        type: number
+      disk_free:
+        description: 空闲磁盘空间
+        type: integer
+      disk_total:
+        description: 总磁盘空间
+        type: integer
+      disk_usage:
+        description: 磁盘使用率
+        type: number
+      gc_pause:
+        description: GC 暂停时间
+        type: integer
+      gc_runs:
+        description: GC 运行次数
+        type: integer
+      goroutines:
+        description: Goroutine 数量
+        type: integer
+      memory_free:
+        description: 空闲内存
+        type: integer
+      memory_total:
+        description: 总内存
+        type: integer
+      memory_usage:
+        description: 内存使用率
+        type: number
+      memory_used:
+        description: 已用内存
+        type: integer
+      swap_total:
+        description: 交换分区总量
+        type: integer
+      swap_usage:
+        description: 交换分区使用率
+        type: number
+      threads:
+        description: 线程数
+        type: integer
+    type: object
+  routers.SystemInfo:
+    properties:
+      boot_time:
+        description: 系统启动时间
+        type: string
+      go_version:
+        description: Go 版本
+        type: string
+      hostname:
+        description: 主机名
+        type: string
+      kernel_arch:
+        description: 内核架构
+        type: string
+      kernel_version:
+        description: 内核版本
+        type: string
+      num_cpu:
+        description: CPU 核心数
+        type: integer
+      os:
+        description: 操作系统信息
+        type: string
+      platform:
+        description: 操作系统平台
+        type: string
+      uptime:
+        description: 系统运行时间
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /api/ops/dashboard/createDashboard:
+    post:
+      consumes:
+      - application/json
+      description: 在指定租户下创建新的仪表盘
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 仪表盘信息
+        in: body
+        name: dashboard
+        required: true
+        schema:
+          $ref: '#/definitions/models.DashboardCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Dashboard'
+              type: object
+      summary: 创建仪表盘
+      tags:
+      - Dashboard
+  /api/ops/dashboard/createFolder:
+    post:
+      consumes:
+      - application/json
+      description: 在指定租户下创建新的仪表盘文件夹
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 文件夹信息
+        in: body
+        name: folder
+        required: true
+        schema:
+          $ref: '#/definitions/models.FolderQuery'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.DashboardFolders'
+              type: object
+      summary: 创建文件夹
+      tags:
+      - Dashboard-Folder
+  /api/ops/dashboard/deleteDashboard:
+    post:
+      consumes:
+      - application/json
+      description: 删除指定的仪表盘
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 删除条件
+        in: body
+        name: query
+        required: true
+        schema:
+          $ref: '#/definitions/models.DashboardQueryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 删除仪表盘
+      tags:
+      - Dashboard
+  /api/ops/dashboard/deleteFolder:
+    post:
+      consumes:
+      - application/json
+      description: 删除指定的仪表盘文件夹
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 文件夹信息
+        in: body
+        name: folder
+        required: true
+        schema:
+          $ref: '#/definitions/models.FolderUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 删除文件夹
+      tags:
+      - Dashboard-Folder
+  /api/ops/dashboard/getDashboard:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定仪表盘的详细信息
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      - description: 仪表盘ID
+        in: query
+        name: dashboard_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Dashboard'
+              type: object
+      summary: 获取仪表盘详情
+      tags:
+      - Dashboard
+  /api/ops/dashboard/getDashboardFullUrl:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定仪表盘的完整访问 URL
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      - description: 仪表盘ID
+        in: query
+        name: dashboard_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 获取仪表盘完整 URL
+      tags:
+      - Dashboard
+  /api/ops/dashboard/getFolder:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定文件夹的详细信息
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      - description: 文件夹ID
+        in: query
+        name: folder_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.DashboardFolders'
+              type: object
+      summary: 获取文件夹详情
+      tags:
+      - Dashboard-Folder
+  /api/ops/dashboard/listDashboard:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定租户下的所有仪表盘列表
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      - description: 仪表盘ID
+        example: dash1
+        in: query
+        name: dashboard_id
+        type: string
+      - description: 文件夹ID
+        example: folder1
+        in: query
+        name: folder_id
+        type: string
+      - description: 租户ID
+        example: tenant1
+        in: query
+        name: tenant_id
+        type: string
+      - description: 标题
+        example: CPU
+        in: query
+        name: title
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Dashboard'
+                  type: array
+              type: object
+      summary: 获取仪表盘列表
+      tags:
+      - Dashboard
+  /api/ops/dashboard/listFolder:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定租户下的所有仪表盘文件夹
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.DashboardFolders'
+                  type: array
+              type: object
+      summary: 获取文件夹列表
+      tags:
+      - Dashboard-Folder
+  /api/ops/dashboard/listGrafanaDashboards:
+    get:
+      consumes:
+      - application/json
+      description: 获取指定租户下的所有 Grafana 仪表盘
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.DashboardFolders'
+                  type: array
+              type: object
+      summary: 获取 Grafana 仪表盘列表
+      tags:
+      - Dashboard-Grafana
+  /api/ops/dashboard/searchDashboard:
+    get:
+      consumes:
+      - application/json
+      description: 根据条件搜索仪表盘
+      parameters:
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        required: true
+        type: string
+      - description: 仪表盘ID
+        example: dash1
+        in: query
+        name: dashboard_id
+        type: string
+      - description: 文件夹ID
+        example: folder1
+        in: query
+        name: folder_id
+        type: string
+      - description: 租户ID
+        example: tenant1
+        in: query
+        name: tenant_id
+        type: string
+      - description: 标题
+        example: CPU
+        in: query
+        name: title
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Dashboard'
+                  type: array
+              type: object
+      summary: 搜索仪表盘
+      tags:
+      - Dashboard
+  /api/ops/dashboard/updateDashboard:
+    post:
+      consumes:
+      - application/json
+      description: 更新指定仪表盘的信息
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 仪表盘信息
+        in: body
+        name: dashboard
+        required: true
+        schema:
+          $ref: '#/definitions/models.DashboardUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Dashboard'
+              type: object
+      summary: 更新仪表盘
+      tags:
+      - Dashboard
+  /api/ops/dashboard/updateFolder:
+    post:
+      consumes:
+      - application/json
+      description: 更新指定文件夹的信息
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 文件夹信息
+        in: body
+        name: folder
+        required: true
+        schema:
+          $ref: '#/definitions/models.FolderUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.DashboardFolders'
+              type: object
+      summary: 更新文件夹
+      tags:
+      - Dashboard-Folder
+  /api/ops/event/curEvent:
+    get:
+      consumes:
+      - application/json
+      description: 获取当前活跃的告警事件列表
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 告警级别
+        in: query
+        name: alert_level
+        type: string
+      - description: 告警名称
+        in: query
+        name: alert_name
+        type: string
+      - description: 结束时间
+        in: query
+        name: end_time
+        type: integer
+      - description: 实例
+        in: query
+        name: instance
+        type: string
+      - description: 服务名称
+        in: query
+        name: service_name
+        type: string
+      - description: 开始时间
+        in: query
+        name: start_time
+        type: integer
+      - description: 告警状态
+        in: query
+        name: status
+        type: string
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.AlertCurEvent'
+                  type: array
+              type: object
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 获取当前告警事件
+      tags:
+      - 告警事件
+  /api/ops/event/hisEvent:
+    get:
+      consumes:
+      - application/json
+      description: 获取历史告警事件列表
+      parameters:
+      - description: 租户ID
+        in: header
+        name: tenant_id
+        required: true
+        type: string
+      - description: 告警级别
+        in: query
+        name: alert_level
+        type: string
+      - description: 告警名称
+        in: query
+        name: alert_name
+        type: string
+      - description: 结束时间
+        in: query
+        name: end_time
+        type: integer
+      - description: 实例
+        in: query
+        name: instance
+        type: string
+      - description: 服务名称
+        in: query
+        name: service_name
+        type: string
+      - description: 开始时间
+        in: query
+        name: start_time
+        type: integer
+      - description: 告警状态
+        in: query
+        name: status
+        type: string
+      - description: 租户ID
+        in: query
+        name: tenant_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.AlertHisEvent'
+                  type: array
+              type: object
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 获取历史告警事件
+      tags:
+      - 告警事件
+  /api/ops/role/roleCreate:
+    post:
+      consumes:
+      - application/json
+      description: 创建新的用户角色
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 用户角色信息
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/models.ReqUserRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.UserRole'
+              type: object
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 创建用户角色
+      tags:
+      - 用户角色管理
+  /api/ops/role/roleDelete:
+    post:
+      consumes:
+      - application/json
+      description: 删除指定的用户角色
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 用户角色查询条件
+        in: body
+        name: query
+        required: true
+        schema:
+          $ref: '#/definitions/models.ReqUserRoleQuery'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 删除用户角色
+      tags:
+      - 用户角色管理
+  /api/ops/role/roleList:
+    get:
+      consumes:
+      - application/json
+      description: 根据查询条件获取用户角色列表
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 模糊查询关键字
+        example: 管理员
+        in: query
+        name: query
+        type: string
+      - description: 角色ID
+        example: role_123
+        in: query
+        name: role_id
+        type: string
+      - description: 角色名称
+        example: admin
+        in: query
+        name: role_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.UserRole'
+                  type: array
+              type: object
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 获取用户角色列表
+      tags:
+      - 用户角色管理
+  /api/ops/role/roleUpdate:
+    post:
+      consumes:
+      - application/json
+      description: 更新现有用户角色信息
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 用户角色信息
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/models.ReqUserRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ResponseData'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.UserRole'
+              type: object
+        "400":
+          description: 请求参数错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "401":
+          description: 未授权
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 更新用户角色
+      tags:
+      - 用户角色管理
+  /api/system/checkUser:
+    get:
+      consumes:
+      - application/json
+      description: 更新用户信息接口
+      parameters:
+      - description: 用户名
+        in: query
+        name: username
+        type: string
+      - description: 邮箱
+        in: query
+        name: email
+        type: string
+      - description: 手机号
+        in: query
+        name: phone
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 响应成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 响应失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/system/login:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录接口
+      parameters:
+      - description: 登录请求参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 登录成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/system/register:
+    post:
+      consumes:
+      - application/json
+      description: 用户登录接口
+      parameters:
+      - description: 登录请求参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 登录成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/system/userInfo:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息接口
+      parameters:
+      - description: 用户名
+        in: query
+        name: username
+        type: string
+      - description: 邮箱
+        in: query
+        name: email
+        type: string
+      - description: 手机号
+        in: query
+        name: phone
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/user/changePass:
+    post:
+      consumes:
+      - application/json
+      description: 更新用户信息接口
+      parameters:
+      - description: 更新用户请求参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.ChangePassRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 更新失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/user/searchDutyUser:
+    get:
+      consumes:
+      - application/json
+      description: 获取权限列表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 权限管理
+  /api/user/searchUser:
+    get:
+      consumes:
+      - application/json
+      description: 获取权限列表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 权限管理
+  /api/user/userDelete:
+    post:
+      consumes:
+      - application/json
+      description: 更新用户信息接口
+      parameters:
+      - description: 更新用户请求参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 更新失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/user/userList:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户信息接口
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /api/user/userUpdate:
+    post:
+      consumes:
+      - application/json
+      description: 更新用户信息接口
+      parameters:
+      - description: 更新用户请求参数
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 更新成功
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+        "400":
+          description: 更新失败
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      tags:
+      - 用户管理
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: 检查服务的健康状态
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 健康状态
+          schema:
+            $ref: '#/definitions/routers.HealthStatus'
+        "503":
+          description: 服务不可用
+          schema:
+            $ref: '#/definitions/routers.HealthStatus'
+      tags:
+      - 系统
+swagger: "2.0"
